@@ -81,7 +81,10 @@ app.post("/admin", async(req, res) => {
             // res.redirect('/admin')
     }
 })
-
+app.post("/admin/logout", (req, res) => {
+    req.session.destroy();
+    res.redirect("/")
+})
 app.get("/admin/allItems", requireLogin, async(req, res) => {
     const allItems = await Item.find({})
     res.render('adminAllItems', { allItems })
@@ -240,9 +243,7 @@ app.post("/logout", (req, res) => {
     res.redirect("/")
 })
 
-app.post("/admin/logout", (req, res) => {
-    res.redirect("/")
-})
+
 
 app.listen(5000, () => {
     console.log("server Started");
