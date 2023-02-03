@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express();
-const path = require('path')
+const path = require('path') // This is used for EJS
 const methodOverride = require('method-override')
 const mongoose = require('mongoose');
 const User = require('./models/users');
@@ -16,8 +16,8 @@ app.use(express.json())
 app.use(methodOverride("_method"))
 app.use(session({ secret: 'aitmess', resave: false, saveUninitialized: false }))
 
-app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs'); // For EJS
+app.set('views', path.join(__dirname, 'views')); // For EJS
 
 mongoose.connect('mongodb://localhost:27017/aitMess', { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
